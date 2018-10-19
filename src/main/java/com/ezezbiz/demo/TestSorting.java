@@ -66,6 +66,13 @@ public class TestSorting {
         for (Developer developer : developers) {
             System.out.println(developer);
         }
+
+
+        //userLambda
+        System.out.println("\nLambda salary Sort");
+        developers.sort((Developer o1, Developer o2) -> o1.getSalary().compareTo(o2.getSalary()));
+        developers.forEach((developer -> System.out.println(developer)));
+
     }
 
     public static List<Developer> getDevelopers(){
