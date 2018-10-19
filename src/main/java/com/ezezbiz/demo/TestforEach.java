@@ -28,6 +28,26 @@ public class TestforEach {
         System.out.println("\n\nJava8 forEach and Array \n");
         arrayItems.forEach((k)-> System.out.println(k));
 
+
+        //Output : C
+        System.out.println("\nforEach and Array use if\n");
+        arrayItems.forEach((itme)->{
+            if("C".equals(itme)){
+                System.out.println(itme);
+            }
+        });
+
+        //method reference
+        //Output : A,B,C,D,E
+        System.out.println("\nforEach and Array use reference\n");
+        arrayItems.forEach(System.out::println);
+
+        //Stream and filter
+        //Output : B
+        System.out.println("\nforEach and Array use stream\n");
+        arrayItems.stream()
+                .filter(s->s.contains("B"))
+                .forEach(System.out::println);
     }
 
     public static Map getMapItems(){
