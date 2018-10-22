@@ -3,6 +3,7 @@ package com.ezezbiz.demo;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class TestStreamsMap {
     public static void main(String[] args) {
@@ -16,6 +17,9 @@ public class TestStreamsMap {
 
         System.out.println(alpha); //[a, b, c, d]
         System.out.println(alphaUpper); //[A, B, C, D]
+
+        List<String> collect = alpha.stream().map(String::toUpperCase).collect(Collectors.toList());
+        System.out.println(collect);
 
     }
 }
