@@ -51,6 +51,13 @@ public class TestStreamsFilter {
                 .orElse(null);
         System.out.println(result2);
 
+        Person result3 = persons.stream()
+                .filter(person -> "jwon".equals(person.getName()) && 42 == person.getAge() )
+                .findAny()
+                .orElse(null);
+
+        System.out.println(result3);
+
 
     }
 
