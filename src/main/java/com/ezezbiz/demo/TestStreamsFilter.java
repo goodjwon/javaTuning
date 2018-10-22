@@ -58,6 +58,20 @@ public class TestStreamsFilter {
 
         System.out.println(result3);
 
+        //use map 단수 처리
+        String name = persons.stream()
+                .filter(person -> "jwon".equals(person.getName()))
+                .map(Person::getName)
+                .findAny()
+                .orElse(null);
+        System.out.println(name);
+
+        // use map 복수처리
+        List<String> collect = persons.stream()
+                .map(Person::getName)
+                .collect(Collectors.toList());
+
+        collect.forEach(System.out::println);
 
     }
 
