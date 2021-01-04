@@ -1,4 +1,4 @@
-package com.ezezbiz.demo.tuning;
+package com.ezezbiz.demo.tuning.file.buffer;
 
 import java.io.File;
 import java.io.FileInputStream;
