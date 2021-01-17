@@ -2,11 +2,13 @@ package com.ezezbiz.demo.functions;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
         List<Person> people = getPeople();
         //1. 전통적인 루프 방식
+        System.out.println("1. ============================================");
         List<Person> females = new ArrayList<>();
         for (Person person:people){
             if(person.getGender().equals(Gender.FEMALE)){
@@ -15,7 +17,13 @@ public class Main {
         }
         females.forEach(System.out::println);
 
+        System.out.println("2. ============================================");
 
+        //2. Use filter
+        List<Person> femalesFilter = people.stream()
+                .filter(person -> person.getGender().equals(Gender.FEMALE))
+                .collect(Collectors.toList());
+        femalesFilter.forEach(System.out::println);
     }
 
     private static List<Person> getPeople() {
