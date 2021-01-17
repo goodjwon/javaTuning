@@ -1,8 +1,6 @@
 package com.ezezbiz.demo.functions;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Main {
@@ -26,7 +24,7 @@ public class Main {
                 .collect(Collectors.toList());
         femalesFilter.forEach(System.out::println);
 
-        System.out.println("3. ============================================");
+        System.out.println("3~6. ============================================");
         //3. Use sort
         List<Person> sorted = people.stream()
                 .sorted(Comparator.comparing(Person::getAge).thenComparing(Person::getGender))
@@ -38,7 +36,40 @@ public class Main {
                 .allMatch(person -> person.getAge() > 6);
         System.out.println(allMatch);
 
-        //
+        //5. Any match
+        boolean anyMatch = people.stream()
+                .anyMatch(person -> person.getAge() > 121);
+        System.out.println(anyMatch);
+
+        //6. None match
+        boolean noneMatch =people.stream()
+                .noneMatch(person -> person.getName().equals("Antonio"));
+        System.out.println(noneMatch);
+
+        //7. Max
+        people.stream().max(Comparator.comparing(Person::getAge))
+                .ifPresent(System.out::println);
+
+        //8. Min
+        people.stream().min(Comparator.comparing(Person::getAge))
+                .ifPresent(System.out::println);
+
+        //9. Group
+        Map<Gender, List<Person>> groupByGender = people.stream()
+                .collect(Collectors.groupingBy(Person::getGender));
+
+        groupByGender.forEach(((gender, people1) -> {
+            System.out.println(gender);
+            people1.forEach(System.out::println);
+            System.out.println();
+        }));
+
+        //10. 응용
+        Optional<String> oldestFemaleAge = people.stream()
+                .filter(person -> person.getGender().equals(Gender.FEMALE))
+                .max(Comparator.comparing(Person::getAge))
+                .map(Person::getName);
+        oldestFemaleAge.ifPresent(System.out::println);
     }
 
     private static List<Person> getPeople() {
