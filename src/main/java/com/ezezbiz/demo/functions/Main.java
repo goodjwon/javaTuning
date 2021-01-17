@@ -32,6 +32,13 @@ public class Main {
                 .sorted(Comparator.comparing(Person::getAge).thenComparing(Person::getGender))
                 .collect(Collectors.toList());
         sorted.forEach(System.out::println);
+
+        //4. All match
+        boolean allMatch = people.stream()
+                .allMatch(person -> person.getAge() > 6);
+        System.out.println(allMatch);
+
+        //
     }
 
     private static List<Person> getPeople() {
