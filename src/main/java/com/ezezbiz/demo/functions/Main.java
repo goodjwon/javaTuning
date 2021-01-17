@@ -1,6 +1,7 @@
 package com.ezezbiz.demo.functions;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,6 +25,13 @@ public class Main {
                 .filter(person -> person.getGender().equals(Gender.FEMALE))
                 .collect(Collectors.toList());
         femalesFilter.forEach(System.out::println);
+
+        System.out.println("3. ============================================");
+        //3. Use sort
+        List<Person> sorted = people.stream()
+                .sorted(Comparator.comparing(Person::getAge).thenComparing(Person::getGender))
+                .collect(Collectors.toList());
+        sorted.forEach(System.out::println);
     }
 
     private static List<Person> getPeople() {
