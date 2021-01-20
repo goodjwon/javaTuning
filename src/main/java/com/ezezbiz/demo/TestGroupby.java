@@ -62,7 +62,7 @@ public class TestGroupby {
 }
 
 
-class Item{
+class Item {
 
     private String name;
     private int qty;

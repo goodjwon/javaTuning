@@ -7,7 +7,7 @@ public class Car {
         this.carMoveBehavior = carMoveBehavior;
     }
 
-    public void move(){
+    public void move() {
         carMoveBehavior.action();
     }
 

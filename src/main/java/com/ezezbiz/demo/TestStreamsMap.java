@@ -12,7 +12,7 @@ public class TestStreamsMap {
 
         //toUpperCase
         List<String> alphaUpper = new ArrayList<>();
-        for(String s:alpha){
+        for (String s : alpha) {
             alphaUpper.add(s.toUpperCase());
         }
 
@@ -30,7 +30,7 @@ public class TestStreamsMap {
                 new Staff("lawrence", 33, new BigDecimal(30000))
         );
 
-        List<StaffPublic> result =  staffs.stream().map(temp -> {
+        List<StaffPublic> result = staffs.stream().map(temp -> {
             StaffPublic obj = new StaffPublic();
             obj.setName(temp.getName());
             obj.setAge(temp.getAge());
@@ -50,12 +50,11 @@ public class TestStreamsMap {
          */
 
 
-
     }
 }
 
 
-class Staff{
+class Staff {
     private String name;
     private int age;
     private BigDecimal salary;
@@ -89,7 +88,7 @@ class Staff{
 }
 
 
-class StaffPublic{
+class StaffPublic {
     private String name;
     private int age;
     private String extra;

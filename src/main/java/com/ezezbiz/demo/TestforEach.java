@@ -8,7 +8,7 @@ import java.util.Map;
 public class TestforEach {
     public static void main(String[] args) {
 
-        Map <String, Integer> mapItems = getMapItems();
+        Map<String, Integer> mapItems = getMapItems();
 
         //before
         for (Map.Entry<String, Integer> entry : mapItems.entrySet()) {
@@ -21,18 +21,18 @@ public class TestforEach {
 
         List<String> arrayItems = getListItems();
 
-        for(String item : arrayItems){
+        for (String item : arrayItems) {
             System.out.println(item);
         }
 
         System.out.println("\n\nJava8 forEach and Array \n");
-        arrayItems.forEach((k)-> System.out.println(k));
+        arrayItems.forEach((k) -> System.out.println(k));
 
 
         //Output : C
         System.out.println("\nforEach and Array use if\n");
-        arrayItems.forEach((itme)->{
-            if("C".equals(itme)){
+        arrayItems.forEach((itme) -> {
+            if ("C".equals(itme)) {
                 System.out.println(itme);
             }
         });
@@ -46,11 +46,11 @@ public class TestforEach {
         //Output : B
         System.out.println("\nforEach and Array use stream\n");
         arrayItems.stream()
-                .filter(s->s.contains("B"))
+                .filter(s -> s.contains("B"))
                 .forEach(System.out::println);
     }
 
-    public static Map getMapItems(){
+    public static Map getMapItems() {
         Map<String, Integer> items = new HashMap<>();
         items.put("A", 10);
         items.put("B", 20);
@@ -62,7 +62,7 @@ public class TestforEach {
         return items;
     }
 
-    public static List getListItems(){
+    public static List getListItems() {
         List<String> items = new ArrayList<>();
         items.add("A");
         items.add("B");

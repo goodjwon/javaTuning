@@ -27,12 +27,12 @@ public class TestStreamsFilter {
 
 
         result = lines.stream()
-                .filter(line->!"jwon".equals(line))
+                .filter(line -> !"jwon".equals(line))
                 .collect(Collectors.toList());
         result.forEach(System.out::println);
 
         //use object
-        List<Person> persons = Arrays.asList (
+        List<Person> persons = Arrays.asList(
                 new Person("jwon", 42),
                 new Person("jwon1", 40),
                 new Person("jwon2", 40));
@@ -52,7 +52,7 @@ public class TestStreamsFilter {
         System.out.println(result2);
 
         Person result3 = persons.stream()
-                .filter(person -> "jwon".equals(person.getName()) && 42 == person.getAge() )
+                .filter(person -> "jwon".equals(person.getName()) && 42 == person.getAge())
                 .findAny()
                 .orElse(null);
 

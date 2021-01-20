@@ -8,13 +8,14 @@ import java.util.function.Function;
  */
 public class _Function {
     public static void main(String[] args) {
-        int result =  increment(1);
+        int result = increment(1);
         System.out.println(result);
 
         int result2 = incrementByOneFunction.apply(1);
         System.out.println(result2);
 
-        int mulitiply = multiplayBy10.apply(5);;
+        int mulitiply = multiplayBy10.apply(5);
+        ;
         System.out.println(mulitiply);
 
         //함수 넘기기.
@@ -31,14 +32,14 @@ public class _Function {
     }
 
     static Function<Integer, Integer> multiplayBy10 =
-            number -> number*10;
+            number -> number * 10;
 
     //static int increment 과 같음
     static Function<Integer, Integer> incrementByOneFunction =
             number -> ++number;
 
 
-    static int increment(int number){
+    static int increment(int number) {
         return number + 1;
     }
 
@@ -47,7 +48,7 @@ public class _Function {
             (numberToIncrementByOne, numberToMultiplyBy)
                     -> (numberToIncrementByOne + 1) * (numberToMultiplyBy);
 
-    static int incrementByOneAndMultiplay(int number, int numToMultiplyBy){
-        return (number + 1)* numToMultiplyBy;
+    static int incrementByOneAndMultiplay(int number, int numToMultiplyBy) {
+        return (number + 1) * numToMultiplyBy;
     }
 }

@@ -17,7 +17,7 @@ public class TestSorting {
         List<Developer> developers = getDevelopers();
 
         System.out.println("before start");
-        for(Developer dev:developers){
+        for (Developer dev : developers) {
             System.out.println(dev);
         }
 
@@ -75,7 +75,7 @@ public class TestSorting {
 
     }
 
-    public static List<Developer> getDevelopers(){
+    public static List<Developer> getDevelopers() {
 
         List<Developer> result = new ArrayList<Developer>();
 
