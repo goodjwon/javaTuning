@@ -15,6 +15,12 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+/**
+ * https://www.programmersought.com/article/98922172927/
+ * https://m.blog.naver.com/tmondev/221388780914
+ * https://offbyone.tistory.com/70
+ * https://mycup.tistory.com/273
+ */
 public class SxssfWorkbook {
     public static void writeBigData() throws IOException {
         long startTime = System.currentTimeMillis (); // acquisition start time, in milliseconds
