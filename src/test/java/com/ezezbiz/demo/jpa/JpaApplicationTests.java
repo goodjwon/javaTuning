@@ -2,6 +2,7 @@ package com.ezezbiz.demo.jpa;
 
 import com.ezezbiz.demo.jpa.daos.UserRepository;
 import com.ezezbiz.demo.jpa.entity.User;
+import com.ezezbiz.demo.jpa.entity.UserType;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,7 @@ class JpaApplicationTests {
     @Test
     public void givenUserProfile_whenAddUser_thenCreateNewUser(){
 
-        User user = new User(1, "John", "Doe","Programmer");
+        User user = new User(1, "John", "Doe","Programmer", UserType.Admin);
         userRepository.save(user);
 
         List<User> users = (List<User>) userRepository.findAll();

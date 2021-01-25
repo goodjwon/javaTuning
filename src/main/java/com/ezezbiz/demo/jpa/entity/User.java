@@ -1,7 +1,6 @@
 package com.ezezbiz.demo.jpa.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class User {
@@ -9,13 +8,18 @@ public class User {
     private int id;
     private String firstName;
     private String lastName;
+    @Column(name = "CAREER_OK", nullable = false, length = 60)
     private String career;
+    @Enumerated(EnumType.STRING)
+    private UserType userType;
 
-    public User(int id, String firstNamne, String lastName, String career) {
+    public User(int id, String firstNamne, String lastName, String career, UserType userType) {
         this.id = id;
         this.firstName = firstNamne;
         this.lastName = lastName;
         this.career = career;
+        this.userType = userType;
+
     }
 
     public User() {
@@ -40,11 +44,12 @@ public class User {
 
     @Override
     public String toString() {
-        return "Billionaires{" +
+        return "User{" +
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", career='" + career + '\'' +
+                ", userType=" + userType +
                 '}';
     }
 }
