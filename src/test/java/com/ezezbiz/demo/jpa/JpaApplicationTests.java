@@ -1,6 +1,8 @@
 package com.ezezbiz.demo.jpa;
 
+import com.ezezbiz.demo.jpa.daos.TeamRepository;
 import com.ezezbiz.demo.jpa.daos.UserRepository;
+import com.ezezbiz.demo.jpa.entity.Team;
 import com.ezezbiz.demo.jpa.entity.User;
 import com.ezezbiz.demo.jpa.entity.UserType;
 import org.junit.jupiter.api.Test;
@@ -10,6 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static org.junit.Assert.assertFalse;
@@ -20,6 +23,8 @@ class JpaApplicationTests {
 
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private TeamRepository teamRepository;
 
     @Test
     void contextLoads() {
@@ -28,16 +33,26 @@ class JpaApplicationTests {
     @Test
     public void givenUserProfile_whenAddUser_thenCreateNewUser(){
 
-        User user = new User(1, "John", "Doe","Programmer", UserType.Admin);
+        Team team = new Team("teamA");
+        User user = new User("John", "Doe","Programmer", UserType.Admin, team);
+        teamRepository.save(team);
         userRepository.save(user);
 
-        List<User> users = (List<User>) userRepository.findAll();
+        Optional<User> findUser = userRepository.findById(user.getId());
+        System.out.println(findUser);
+
+
+        System.out.println("* findUser ============");
+        assertFalse(findUser.isEmpty());
+        System.out.println("============");
+
+        //List<User> users = (List<User>) userRepository.findAll();
 
         System.out.println("============");
-        users.forEach(System.out::println);
+        //users.forEach(System.out::println);
         System.out.println("============");
 
-        assertFalse(users.isEmpty());
+        //assertFalse(users.isEmpty());
 
     }
 

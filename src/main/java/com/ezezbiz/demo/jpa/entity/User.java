@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 public class User {
-    @Id
+    @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String firstName;
     private String lastName;
@@ -12,14 +12,16 @@ public class User {
     private String career;
     @Enumerated(EnumType.STRING)
     private UserType userType;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "TEAM_ID")
+    private Team team;
 
-    public User(int id, String firstNamne, String lastName, String career, UserType userType) {
-        this.id = id;
-        this.firstName = firstNamne;
+    public User(String firstName, String lastName, String career, UserType userType, Team team) {
+        this.firstName = firstName;
         this.lastName = lastName;
         this.career = career;
         this.userType = userType;
-
+        this.team = team;
     }
 
     public User() {
@@ -42,6 +44,14 @@ public class User {
         return career;
     }
 
+    public UserType getUserType() {
+        return userType;
+    }
+
+    public Team getTeam() {
+        return team;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -50,6 +60,7 @@ public class User {
                 ", lastName='" + lastName + '\'' +
                 ", career='" + career + '\'' +
                 ", userType=" + userType +
+                ", team=" + team +
                 '}';
     }
 }
