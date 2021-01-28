@@ -6,7 +6,8 @@ import java.util.List;
 
 @Entity
 public class Team {
-    @Id @GeneratedValue @Column(name = "TEAM_ID")
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long teamId;
     private String teamName;
     @OneToMany(mappedBy = "team")
@@ -27,4 +28,10 @@ public class Team {
     public String getTeamName() {
         return teamName;
     }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+
 }

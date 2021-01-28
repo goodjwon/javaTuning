@@ -4,7 +4,8 @@ import javax.persistence.*;
 
 @Entity
 public class User {
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String firstName;
     private String lastName;
@@ -12,8 +13,8 @@ public class User {
     private String career;
     @Enumerated(EnumType.STRING)
     private UserType userType;
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "TEAM_ID")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "TEAM_ID", referencedColumnName = "teamId")
     private Team team;
 
     public User(String firstName, String lastName, String career, UserType userType, Team team) {
@@ -50,6 +51,26 @@ public class User {
 
     public Team getTeam() {
         return team;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setCareer(String career) {
+        this.career = career;
+    }
+
+    public void setUserType(UserType userType) {
+        this.userType = userType;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
     }
 
     @Override
