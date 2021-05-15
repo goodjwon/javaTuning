@@ -1,49 +1,48 @@
 package com.ezezbiz.demo.algorithm;
 
+import java.util.Arrays;
+
 public class QuickSort {
-    private static int data[] = {1, 10, 5, 7, 8, 6, 4, 2, 3, 9};
 
-    public static void quickSort(int[] data, int start, int end){
-        if(start >= end) {
-            System.out.println("end");
-            return;
-        }
-        int pivot = start;
-        int i = start + 1;
-        int j = end;
-        int temp;
-
-        while (i<=j){
-            while(i <= end && data[i] < data[pivot]){
-                i++;
-                System.out.println(i);
-            }
-            while (j > start && data[j] >= data[pivot]){
-                j--;
-            }
-            if(i > j){
-                temp = data[j];
-                data[j] = data[pivot];
-                data[pivot] = temp;
-            } else {
-                temp = data[i];
-                data[i] = data[j];
-                data[j] = temp;
-            }
-            quickSort(data, start, j-1);
-            quickSort(data, j+1, end);
+    public static void QuickSort(int[] array) {
+        QuickSort(array, 0, array.length - 1);
+    }
+    public static void QuickSort(int[] array, int left, int right){
+        if(left < right) {
+            int index = partition(array, left, right);
+            QuickSort(array, left, index - 1);
+            QuickSort(array, index + 1, right);
         }
     }
-
-    public static void show(){
-        for(int i = 0; i< data.length; i++){
-            System.out.println(data[i] + " ");
+    public static int partition(int[] array, int left, int right){
+        int pivot = array[right];
+        int first = left - 1;
+        for (int j = left; j <= right - 1; j++) {
+            if(array[j] < pivot) {
+                first ++;
+                swap(array, first, j);
+            }
         }
+        swap(array, first + 1, right);
+        return first + 1;
+    }
+    public static void swap(int[] array, int left, int right) {
+        int temp = array[left];
+        array[left] = array[right];
+        array[right] = temp;
+    }
+    public static void main(String[] args)
+    {
+        int[] myArray = RandomNumbers.getNumbersArray();
+
+        long start, end;    //시간 탐색
+        start = System.currentTimeMillis();
+//        System.out.println(Arrays.toString(myArray));
+        QuickSort(myArray);
+        end = System.currentTimeMillis();
+        System.out.println((end - start) / 1000.0 +"초 걸림");
+//        System.out.println(Arrays.toString(myArray));
     }
 
-    public static void main(String[] args) {
-        quickSort(data, 0, data.length-1);
-        show();
-    }
 
 }

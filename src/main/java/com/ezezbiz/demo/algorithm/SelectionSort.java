@@ -1,7 +1,6 @@
 package com.ezezbiz.demo.algorithm;
 
 public class SelectionSort {
-
     /**
      *      5, 10, 1, 7, 8, 6, 4, 2, 3, 9
      *      1, 10, 5, 7, 8, 6, 4, 2, 3, 9
@@ -13,9 +12,10 @@ public class SelectionSort {
      *      등차수열 총 55회 계산.
      *      10 * (10+1)/2 = 55;
      */
-    private static int data[] = {5, 10, 1, 7, 8, 6, 4, 2, 3, 9};
+    private static int[] sort(){
 
-    private static int[] sort(int[] data){
+        int[] data = RandomNumbers.getNumbersArray();
+
         int i, j;   // i, j 원소 탐색
         int min;    // min 최소값
         int index = 0;  // index 가장작은 값의 위치
@@ -40,12 +40,12 @@ public class SelectionSort {
     public static void main(String[] args) {
         long start, end;    //시간 탐색
         start = System.currentTimeMillis();
-        int results[] = sort(data);
+        int results[] = sort();
         end = System.currentTimeMillis();
-        System.out.println((end - start) / 1000.0);
+        System.out.println((end - start) / 1000.0 + "초 걸림.");
 
-        for (int a:results){
-            System.out.println(a);
-        }
+//        for (int a:results){
+//            System.out.println(a);
+//        }
     }
 }
