@@ -1,18 +1,25 @@
 package com.ezezbiz.demo.algorithm;
 
 public class BubleSort {
-    static int i, j, temp;
     static int array[] = RandomNumbers.getNumbersArray();
 
     public static void main(String[] args) {
-        bubble_sort(array);
+        int result[] = bubble_sort(array);
+
+        for(int a : result){
+            System.out.println(a);
+        }
+
     }
 
-    public static void bubble_sort(int[] a) {
+    public static int[] bubble_sort(int[] a) {
         bubble_sort(a, a.length);
+        return a;
     }
 
     private static void bubble_sort(int[] a, int size) {
+
+        int[] result;
         // round는 배열 크기 - 1 만큼 진행됨
         for(int i = 1; i < size; i++) {
             // 각 라운드별 비교횟수는 배열 크기의 현재 라운드를 뺀 만큼 비교함

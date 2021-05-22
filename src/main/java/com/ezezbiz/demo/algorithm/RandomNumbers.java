@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 public class RandomNumbers {
         public static int[] getNumbersArray(){
-            return new Random().ints(0,500000).limit(500000).toArray();
+            return new Random().ints(1,50).limit(50).toArray();
         }
 
         public static List<Integer> getNumbersList(){
