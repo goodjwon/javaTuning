@@ -1,4 +1,6 @@
-package com.ezezbiz.demo;
+package com.ezezbiz.demo.stream;
+
+import com.ezezbiz.demo.Developer;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
