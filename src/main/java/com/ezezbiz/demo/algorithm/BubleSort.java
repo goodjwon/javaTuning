@@ -4,16 +4,20 @@ public class BubleSort {
     static int array[] = RandomNumbers.getNumbersArray();
 
     public static void main(String[] args) {
-        int result[] = bubble_sort(array);
+        int result[] = sort(array);
 
         for(int a : result){
-            System.out.println(a);
+//            System.out.println(a);
         }
 
     }
 
-    public static int[] bubble_sort(int[] a) {
+    public static int[] sort(int[] a) {
+        long start, end;    //시간 탐색
+        start = System.currentTimeMillis();
         bubble_sort(a, a.length);
+        end = System.currentTimeMillis();
+        System.out.println((end - start) / 1000.0 +"초 걸림");
         return a;
     }
 
