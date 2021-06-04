@@ -10,7 +10,7 @@ public class Recurision_1 {
         if (k<=0) return;
         else {
             func(k-1);
-            System.out.println("Hello Recursion !!!");
+            System.out.println("Hello Recursion !!!"+k);
         }
     }
 }
