@@ -1,6 +1,6 @@
 package com.ezezbiz.demo.algorithm;
 
-public class Recurision_2 {
+public class Recursion_2 {
     public static void main(String[] args) {
         int result = func(4);
         System.out.println(result);

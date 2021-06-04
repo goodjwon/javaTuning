@@ -1,6 +1,6 @@
 package com.ezezbiz.demo.algorithm;
 
-public class Recurision_1 {
+public class Recursion_1 {
     public static void main(String[] args) {
         int n = 4;
         func(n);
