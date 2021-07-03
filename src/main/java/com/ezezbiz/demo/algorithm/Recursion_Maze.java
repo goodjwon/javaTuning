@@ -1,6 +1,6 @@
 package com.ezezbiz.demo.algorithm;
 
-public class Maze {
+public class Recursion_Maze {
     private static int N = 8;
     private static int [][] maze = {
             {0,0,0,0,0,0,0,1},
