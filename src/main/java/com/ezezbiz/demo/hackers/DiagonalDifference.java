@@ -18,6 +18,7 @@ class DiagonalDifferenceResult {
      *
      * The function is expected to return an INTEGER.
      * The function accepts INTEGER_ARRAY ar as parameter.
+     * https://www.hackerrank.com/challenges/diagonal-difference/problem
      */
 
     public static int diagonalDifference(List<List<Integer>> arr) {
