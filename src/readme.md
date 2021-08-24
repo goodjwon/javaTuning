@@ -15,3 +15,17 @@ src/test/java/com/ezezbiz/demo/jpa/JpaApplicationTests.java
 ### 1.사용
   - java -jar myapp.jar --spring.profiles.active=prod
   - 
+
+
+## 2. 실습예제.
+### 1. jpa
+### 1. function
+### 1. files
+### 1. algorithm
+### 1. stream
+### 1. generic
+#### 클래스 설명
+
+#### 참고사이트
+    - https://preamtree.tistory.com/138
+    - https://www.baeldung.com/java-generic-constructors
