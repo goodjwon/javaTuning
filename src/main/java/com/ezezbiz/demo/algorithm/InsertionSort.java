@@ -1,5 +1,8 @@
 package com.ezezbiz.demo.algorithm;
 
+/**
+ * 5.29.2021
+ */
 public class InsertionSort {
     static int array[] = RandomNumbers.getNumbersArray();
 //    static int array[] = {1, 10, 5, 6, 7, 8, 4, 3, 2, 9};
