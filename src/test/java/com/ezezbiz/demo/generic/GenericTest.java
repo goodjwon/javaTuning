@@ -53,5 +53,13 @@ public class GenericTest {
         assertEquals(30, entry.getRank());
     }
 
+    @Test
+    public void givenGenericConstructor_whenCreateGenericEntryWithTwoTypes_thenOK(){
+        MapEntry<String, Integer> entry = new MapEntry<String, Integer>("sample", 1);
+
+        assertEquals("sample", entry.getKey());
+        assertEquals(1, entry.getValue().intValue());
+    }
+
 
 }
