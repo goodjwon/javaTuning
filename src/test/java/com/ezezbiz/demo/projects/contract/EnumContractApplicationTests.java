@@ -20,5 +20,10 @@ public class EnumContractApplicationTests {
                 1.0,
                 EnumContract.CommissionType.MONEY,
                 EnumContract.CommissionCutting.ROUND));
+
+        EnumContract saved = enumContractRepository.findById(1L).orElse(null);
+        System.out.println(saved.toString());
+        assertThat(saved.getCommissionType(), is(EnumContract.CommissionType.MONEY));
+        assertThat(saved.getCommissionCutting(), is(EnumContract.CommissionCutting.ROUND));
     }
 }

@@ -92,4 +92,15 @@ public class EnumContract {
     public CommissionCutting getCommissionCutting() {
         return commissionCutting;
     }
+
+    @Override
+    public String toString() {
+        return "EnumContract{" +
+                "id=" + id +
+                ", company='" + company + '\'' +
+                ", commission=" + commission +
+                ", commissionType=" + commissionType +
+                ", commissionCutting=" + commissionCutting +
+                '}';
+    }
 }
