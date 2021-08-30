@@ -55,9 +55,9 @@ public class TestStreamsMap {
 
 
 class Staff {
-    private String name;
-    private int age;
-    private BigDecimal salary;
+    private final String name;
+    private final int age;
+    private final BigDecimal salary;
 
     public Staff(String name, int age, BigDecimal salary) {
         this.name = name;

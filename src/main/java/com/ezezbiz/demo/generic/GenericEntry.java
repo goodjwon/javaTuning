@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class GenericEntry <T> {
     private T data;
-    private int rank;
+    private final int rank;
 
     public GenericEntry(int rank) {
         this.rank = rank;

@@ -4,10 +4,10 @@ package com.ezezbiz.demo.algorithm;
  * 5.22.2021
  */
 public class BubleSort {
-    static int array[] = RandomNumbers.getNumbersArray();
+    static int[] array = RandomNumbers.getNumbersArray();
 
     public static void main(String[] args) {
-        int result[] = sort(array);
+        int[] result = sort(array);
 
         for(int a : result){
 //            System.out.println(a);

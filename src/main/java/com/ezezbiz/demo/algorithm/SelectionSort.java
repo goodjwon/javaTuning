@@ -40,7 +40,7 @@ public class SelectionSort {
     public static void main(String[] args) {
         long start, end;    //시간 탐색
         start = System.currentTimeMillis();
-        int results[] = sort();
+        int[] results = sort();
         end = System.currentTimeMillis();
         System.out.println((end - start) / 1000.0 + "초 걸림.");
 

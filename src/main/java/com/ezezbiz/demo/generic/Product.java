@@ -3,8 +3,8 @@ package com.ezezbiz.demo.generic;
 import java.io.Serializable;
 
 public class Product implements Rankable, Serializable {
-    private String name;
-    private double price;
+    private final String name;
+    private final double price;
     private int sales;
 
     public Product(String name, double price) {

@@ -1,8 +1,8 @@
 package com.ezezbiz.demo.algorithm;
 
 public class Recursion_Maze {
-    private static int N = 8;
-    private static int [][] maze = {
+    private static final int N = 8;
+    private static final int [][] maze = {
             {0,0,0,0,0,0,0,1},
             {0,1,1,0,1,1,0,1},
             {0,0,0,1,0,0,0,1},
@@ -49,8 +49,8 @@ public class Recursion_Maze {
             for (int j = 0; j < maze[i].length; j++) {
                 System.out.print(maze[i][j] + " ");
             }
-            System.out.println("");
+            System.out.println();
         }
-        System.out.println("");
+        System.out.println();
     }
 }

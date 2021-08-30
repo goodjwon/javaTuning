@@ -2,11 +2,11 @@ package com.ezezbiz.demo.algorithm;
 
 public class Recursion_CountingCellBlob {
 
-    private static int BACKGROUND_COLOR = 0;
-    private static int IMAGE_COLOR = 1;
-    private static int ALREADY_COUNTED = 2;
-    private static int N = 8;
-    private static int[][] grid = {
+    private static final int BACKGROUND_COLOR = 0;
+    private static final int IMAGE_COLOR = 1;
+    private static final int ALREADY_COUNTED = 2;
+    private static final int N = 8;
+    private static final int[][] grid = {
             {1, 0, 0, 0, 0, 0, 0, 1},
             {0, 1, 1, 0, 0, 1, 0, 0},
             {1, 1, 0, 0, 1, 0, 1, 0},

@@ -16,7 +16,7 @@ public class FileReadWriteBufferTestMultiThread {
 }
 
 class MultiThread extends Thread {
-    private int i;
+    private final int i;
 
     public MultiThread(int i) {
         this.i = i;

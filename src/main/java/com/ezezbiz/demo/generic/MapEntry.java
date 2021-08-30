@@ -1,8 +1,8 @@
 package com.ezezbiz.demo.generic;
 
 public class MapEntry <K, V> {
-    private K key;
-    private V value;
+    private final K key;
+    private final V value;
 
     public MapEntry(K key, V value) {
         this.key = key;

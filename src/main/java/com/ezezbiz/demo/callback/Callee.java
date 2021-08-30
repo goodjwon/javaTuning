@@ -8,7 +8,7 @@ public class Callee {
 
     @FunctionalInterface
     public interface CallBack{
-        public void onGetMessage(Callee callee);
+        void onGetMessage(Callee callee);
     }
 
     public Callee(){
