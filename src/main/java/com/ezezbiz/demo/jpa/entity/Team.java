@@ -1,17 +1,16 @@
 package com.ezezbiz.demo.jpa.entity;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 public class Team {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue
+    @Column(name = "team_id")
     private Long teamId;
     private String teamName;
     @OneToMany(mappedBy = "team")
-    private List<User> users = new ArrayList<User>();
+    private List<User> users;
 
     public Team(String teamName) {
         this.teamName = teamName;
@@ -33,5 +32,12 @@ public class Team {
         return users;
     }
 
-
+    @Override
+    public String toString() {
+        return "Team{" +
+                "teamId=" + teamId +
+                ", teamName='" + teamName + '\'' +
+                ", users=" + users +
+                '}';
+    }
 }
