@@ -1,4 +1,4 @@
-package com.ezezbiz.demo;
+package com.ezezbiz.demo.stream;
 
 import java.util.ArrayList;
 import java.util.Arrays;

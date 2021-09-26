@@ -18,5 +18,5 @@ public class SampleController {
     @RequestMapping("/users")
     List<User> users() {
         return (List<User>) userRepository.findAll();
-    };
+    }
 }

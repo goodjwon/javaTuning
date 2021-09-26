@@ -15,7 +15,6 @@ public class _Function {
         System.out.println(result2);
 
         int mulitiply = multiplayBy10.apply(5);
-        ;
         System.out.println(mulitiply);
 
         //함수 넘기기.
