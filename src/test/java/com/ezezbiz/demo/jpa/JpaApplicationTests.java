@@ -6,19 +6,17 @@ import com.ezezbiz.demo.jpa.entity.Team;
 import com.ezezbiz.demo.jpa.entity.User;
 import com.ezezbiz.demo.jpa.entity.UserType;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
-import static org.junit.Assert.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * 외래키가 있는 쪽을 주인으로 정해라
@@ -27,7 +25,6 @@ import static org.junit.Assert.assertFalse;
  * 단방양으로 작업 후 양방향으로 해도 DB에는 영향을 주지 않는다.
  * 주인이 아닌쪽은 읽기만 가능하다.
  */
-@RunWith(SpringRunner.class)
 @SpringBootTest(classes = JpaApplication.class)
 class JpaApplicationTests {
 
@@ -77,7 +74,7 @@ class JpaApplicationTests {
     @Transactional
     public void givenUsersProfile(){
         List<User> users  = (List<User>) userRepository.findAll();
-        assertFalse(users.isEmpty());
+        assertTrue(users.isEmpty());
     }
 
 

@@ -2,7 +2,7 @@ package com.ezezbiz.demo.streams.examples;
 
 import com.ezezbiz.demo.streams.beans.Car;
 import com.ezezbiz.demo.streams.mockdata.MockData;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
 
 import java.util.Arrays;
