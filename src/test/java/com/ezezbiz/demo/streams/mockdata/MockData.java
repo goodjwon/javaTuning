@@ -3,6 +3,10 @@ package com.ezezbiz.demo.streams.mockdata;
 
 import com.ezezbiz.demo.streams.beans.Car;
 import com.ezezbiz.demo.streams.beans.Person;
+import com.google.common.io.Resources;
+import com.google.common.reflect.TypeToken;
+import com.google.gson.Gson;
+import org.apache.commons.io.IOUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -10,10 +14,6 @@ import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
-import com.google.common.io.Resources;
-import com.google.common.reflect.TypeToken;
-import com.google.gson.Gson;
-import org.apache.commons.io.IOUtils;
 
 public class MockData {
     public static List<Person> getPeople() throws IOException {
@@ -28,5 +28,13 @@ public class MockData {
         String json = IOUtils.toString(inputStream, StandardCharsets.UTF_8);
         Type listType = new TypeToken<ArrayList<Car>>() {}.getType();
         return new Gson().fromJson(json, listType);
+    }
+
+    public static List<String> getNames() throws IOException{
+        InputStream inputStream = Resources.getResource("names.json").openStream();
+        String json = IOUtils.toString(inputStream,  StandardCharsets.UTF_8);
+        Type listType = new TypeToken<ArrayList<String>>() {}.getType();
+        return new Gson().fromJson(json, listType);
+
     }
 }
