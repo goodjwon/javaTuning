@@ -8,12 +8,13 @@ public class GenericRun {
         printer.print();
         catPrinter.print();
 
+        System.out.println("================");
+
         shout("John");
         shout(47);
         shout(new Cat());
         shout("John", 47);
     }
-
 
     private static <T> void shout(T thingToShout){
         System.out.println(thingToShout+" !!!!");
