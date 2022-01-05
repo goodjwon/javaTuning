@@ -1,9 +1,15 @@
 package com.ezezbiz.demo.generic.step0;
 
-public class Printer {
+public class Printer<T extends Dog> {
 
-    public static void print(){
-        System.out.println("Wawooo !!!!!");
+    T dog;
+
+    public Printer(T bark){
+        this.dog = bark;
+    }
+
+    public void print() {
+        System.out.println(dog.name() + " Wawooo!!!!");
     }
 
 }
