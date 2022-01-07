@@ -5,9 +5,17 @@ public class GenericRun0 {
         Cat cat = new Cat();
         Dog dog = new Dog();
 
-        Printer printer = new Printer();
-        printer.print(cat.getName());
-        printer.print(dog.getName());
+        CatPrinter catPrinter = new CatPrinter();
+        DogPrinter dogPrinter = new DogPrinter();
+
+        catPrinter.print(cat);
+        dogPrinter.print(dog);
+
+        GenPrinter genPrinter = new GenPrinter();
+
+        genPrinter.print(cat);
+        genPrinter.print(dog);
+
 
     }
 }
