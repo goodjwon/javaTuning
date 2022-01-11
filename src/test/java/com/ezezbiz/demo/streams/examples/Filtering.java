@@ -22,7 +22,7 @@ public class Filtering {
         List<Car> cars = MockData.getCars();
 
         List<Car> result = cars.stream()
-                .filter(car -> car.getPrice() > 99000)
+                .filter(car -> car.getPrice() > 0)
                 .filter(car->car.getColor().equals("Yellow"))
                 .collect(Collectors.toList());
 
