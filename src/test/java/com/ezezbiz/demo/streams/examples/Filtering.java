@@ -1,12 +1,15 @@
 package com.ezezbiz.demo.streams.examples;
 
 import com.ezezbiz.demo.streams.beans.Car;
+import com.ezezbiz.demo.streams.beans.Person;
 import com.ezezbiz.demo.streams.mockdata.MockData;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -40,6 +43,37 @@ public class Filtering {
                 .collect(Collectors.toList());
 
         result2.forEach(System.out::println);
+    }
+
+    @Test
+    @DisplayName("Max 함수를 통해서 가장 큰 값을 가지고 온다.")
+    public void getMaxAge() throws Exception{
+        List<Person> people = MockData.getPeople();
+
+        people.stream().max(Comparator.comparing(Person::getAge))
+                .ifPresent(System.out::println);
+    }
+
+    @Test
+    @DisplayName("min 함수를 통해서 가장 작은 값을 가지고 온다.")
+    public void getMinAge() throws Exception {
+        List<Person> people = MockData.getPeople();
+
+        people.stream().min(Comparator.comparing(Person::getAge))
+                .ifPresent(System.out::println);
+    }
+
+    @Test
+    @DisplayName("group 을 처리 한다.")
+    public void getGender() throws Exception {
+        List<Person> people = MockData.getPeople();
+
+        Map<String, List<Person>> groupByGender = people.stream().collect(Collectors.groupingBy(Person::getGender));
+
+        groupByGender.forEach((gender, people1)->{
+            System.out.println(gender);
+            people1.forEach(System.out::println);
+        });
     }
 
     @Test
