@@ -6,10 +6,7 @@ import com.ezezbiz.demo.streams.mockdata.MockData;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -115,7 +112,7 @@ public class Filtering {
     }
 
     @Test
-    @DisplayName("")
+    @DisplayName("stream 에 첫 번째 값을 리턴 한다. 병렬로 진행할 경우 다른 값이 나올 수 있다.")
     public void findAny() {
         int[] numbers = {1,2,3,4,5,6,7,8,10};
         int result = Arrays.stream(numbers).filter(n-> n > 4)
@@ -126,7 +123,16 @@ public class Filtering {
     }
 
     @Test
-    @DisplayName("")
+    @DisplayName("stream 에 첫 번째 값을 리턴 한다. 병렬로 진행")
+    public void findAnyParallel() {
+        List<String> elements = Arrays.asList("a", "a1", "b", "b1", "c", "c1");
+        Optional<String> anyElement = elements.stream().parallel().filter(s -> s.startsWith("b")).findAny();
+
+        System.out.println(anyElement.get());
+    }
+
+    @Test
+    @DisplayName("모든 요소가 조건에 만족하는지 검사.")
     public void allMatch() {
         int[] numbers = {2, 4, 6, 8, 10};
         boolean result = Arrays.stream(numbers).allMatch(n-> n % 2 == 0);
