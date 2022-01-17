@@ -2,6 +2,7 @@ package com.ezezbiz.demo.function;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
 public class ConsumerExample {
@@ -12,14 +13,25 @@ public class ConsumerExample {
     }
 
     @Test
-    public void testConsumer(){
+    public void testCustomerConsumer(){
         greetCustomerCustomer.accept(new Customer("Jwon", "9999"));
+    }
+
+    @Test
+    public void testCustomerBiConsumer(){
+        greetCustomerBiCustomer.accept(new Customer("Jwon", "9999"), false);
+
     }
     
     static Consumer<Customer> greetCustomerCustomer = customer
             -> System.out.println("Hello " + customer.getCustomerName()
             +", thanks for registering phone number "
             + customer.getCustomerPhoneNumber());
+
+    static BiConsumer<Customer, Boolean> greetCustomerBiCustomer = (customer, showPhoneNumber)
+            -> System.out.println("Hello " + customer.getCustomerName()
+            +", thanks for registering phone number "
+            + (showPhoneNumber?customer.getCustomerPhoneNumber():"*****"));
 
 
     static void greetCustomer(Customer customer){
