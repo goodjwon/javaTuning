@@ -41,7 +41,7 @@ class JpaApplicationTests {
     @Rollback(false)
     @Transactional
     public void givenUserProfile_whenAddUser_thenCreateNewUser(){
-        try{
+        try {
         Team team = new Team("teamA");
         User user = new User("John", "Doe","Programmer", UserType.Admin, team);
         teamRepository.save(team);
