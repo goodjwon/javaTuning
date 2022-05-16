@@ -7,6 +7,9 @@ import org.junit.jupiter.api.TestInstance;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class Result {
@@ -55,6 +58,11 @@ public class Result {
     @Test
     public void resultTest(){
         dailyList1.forEach(re-> System.out.println(re.toString()));
+
+        List<ResultBean> collect = dailyList1.stream()
+                .filter(r -> r.getEstimateType().equals("ESTIMATE-INFO"))
+                .collect(Collectors.toList());
+        assertThat(collect.size()).isEqualTo(17);
     }
 
 }
