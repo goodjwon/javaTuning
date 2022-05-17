@@ -6,7 +6,9 @@ import org.junit.jupiter.api.TestInstance;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -57,14 +59,67 @@ public class Result {
 
     @Test
     public void resultTest(){
-        dailyList1.forEach(re-> System.out.println(re.toString()));
-
         List<ResultBean> collect = dailyList1.stream()
                 .filter(r -> r.getEstimateType().equals("ESTIMATE-INFO"))
                 .collect(Collectors.toList());
         assertThat(collect.size()).isEqualTo(17);
     }
 
+    @Test
+    public void resultTestFix17(){
+        List<ResultBean> collect = dailyList1.stream()
+                .filter(r -> r.getEstimateType().equals("BID_SEQ"))
+                .collect(Collectors.toList());
+
+        List<ResultBean> results = dataFormatter(collect);
+
+        results.forEach(r-> System.out.println(r));
+
+        assertThat(results.size()).isEqualTo(17);
+        assertThat(results.size()).isEqualTo(17);
+    }
+
+
+
+    /**
+     * 17 (시도) * 3 (전문타입) * 2(전문유형, 카운트 , 금액)
+     */
+    private void setResultArrays(String key, List<ResultBean> values){
+
+
+
+    }
+
+    private List<ResultBean> dataFormatter(List<ResultBean> values){
+        Map<String, ResultBean> stringResultBeanMap = new LinkedHashMap<>();
+        stringResultBeanMap.put("강원", new ResultBean());
+        stringResultBeanMap.put("경기", new ResultBean());
+        stringResultBeanMap.put("경남", new ResultBean());
+        stringResultBeanMap.put("경북", new ResultBean());
+        stringResultBeanMap.put("광주", new ResultBean());
+        stringResultBeanMap.put("대구", new ResultBean());
+        stringResultBeanMap.put("대전", new ResultBean());
+        stringResultBeanMap.put("부산", new ResultBean());
+        stringResultBeanMap.put("서울", new ResultBean());
+        stringResultBeanMap.put("세종", new ResultBean());
+        stringResultBeanMap.put("울산", new ResultBean());
+        stringResultBeanMap.put("인천", new ResultBean());
+        stringResultBeanMap.put("전남", new ResultBean());
+        stringResultBeanMap.put("전북", new ResultBean());
+        stringResultBeanMap.put("제주", new ResultBean());
+        stringResultBeanMap.put("충남", new ResultBean());
+        stringResultBeanMap.put("충북", new ResultBean());
+
+        for(String key : stringResultBeanMap.keySet()){
+            for(ResultBean re: values ){
+                if(key.equals(re.getCity())){
+                    stringResultBeanMap.replace(re.getCity(), re);
+                }
+            }
+        }
+
+        return stringResultBeanMap.values().stream().collect(Collectors.toList());
+    }
 }
 
 class ResultBean {
@@ -72,7 +127,12 @@ class ResultBean {
     public String estimateType;
     public String city;
     public BigDecimal amount;
-    public int contracts;
+    public Integer contracts;
+
+    public ResultBean(){
+        this.amount = new BigDecimal(0.00);
+        this.contracts =  Integer.valueOf(0);
+    }
 
     public ResultBean(String orderDate, String estimateType, String city, BigDecimal amount, int contracts) {
         this.orderDate = orderDate;
