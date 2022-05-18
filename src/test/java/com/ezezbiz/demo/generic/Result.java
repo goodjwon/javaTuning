@@ -5,10 +5,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -76,7 +74,7 @@ public class Result {
 
         List<ResultBean> results = dataFormatter(collect);
 
-//        results.forEach(r-> System.out.println(r));
+        results.forEach(r-> System.out.println(r));
 
         assertThat(results.size()).isEqualTo(17);
     }
@@ -94,23 +92,42 @@ public class Result {
         Map<String, ResultBean> stringResultBeanMap = initLocalArea();
 
         for(String key : stringResultBeanMap.keySet()){
-            for(ResultBean re: values ){
-                if(key.equals(re.getCity())){
-                    stringResultBeanMap.replace(re.getCity(), re);
-                }
-            }
+            stringResultBeanMap.replace(key, matchResult(key, values));
         }
 
-        List<String> result2 = stringResultBeanMap.keySet()
-                .stream()
-                .filter(str -> values.stream()
-                        .anyMatch( r -> r.getCity().equals(str)))
-                .collect(Collectors.toList());
-
         System.out.println("=======================");
-        result2.forEach(System.out::println);
+//        result2.forEach(System.out::println);
 
         return stringResultBeanMap.values().stream().collect(Collectors.toList());
+    }
+
+
+    private ResultBean matchResult(String key, List<ResultBean> values) {
+        ResultBean result = new ResultBean();
+        for(ResultBean re: values){
+            if(key.equals(re.getCity()))
+                result = re;
+        }
+        return result;
+    }
+
+    @Test
+    public void test2Loops(){
+        List<String> list1 = Arrays.asList("a", "b", "c", "d", "e");
+        List<String> list2 = Arrays.asList("a", "b", "d");
+
+        List<String> result2 = list1.stream()
+                .filter(str ->
+                        list2.stream()
+                        .anyMatch(Predicate.isEqual(str)))
+                .collect(Collectors.toList());
+
+
+        result2.stream().forEach(System.out::print);
+
+
+
+
     }
 
 
