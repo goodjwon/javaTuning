@@ -62,20 +62,22 @@ public class Result {
         List<ResultBean> collect = dailyList1.stream()
                 .filter(r -> r.getEstimateType().equals("ESTIMATE-INFO"))
                 .collect(Collectors.toList());
+
         assertThat(collect.size()).isEqualTo(17);
+//        assertThat(collect).contains(new ResultBean("20220428", "ESTIMATE-INFO", "강원", new BigDecimal(68647480), 117));
+//        assertThat(collect).contains(new ResultBean("20220428", "ESTIMATE-REQ", "충북", new BigDecimal(230744910), 48));
     }
 
     @Test
     public void resultTestFix17(){
         List<ResultBean> collect = dailyList1.stream()
-                .filter(r -> r.getEstimateType().equals("BID_SEQ"))
+                .filter(r -> r.getEstimateType().equals("ESTIMATE-INFO"))
                 .collect(Collectors.toList());
 
         List<ResultBean> results = dataFormatter(collect);
 
-        results.forEach(r-> System.out.println(r));
+//        results.forEach(r-> System.out.println(r));
 
-        assertThat(results.size()).isEqualTo(17);
         assertThat(results.size()).isEqualTo(17);
     }
 
@@ -86,29 +88,10 @@ public class Result {
      */
     private void setResultArrays(String key, List<ResultBean> values){
 
-
-
     }
 
     private List<ResultBean> dataFormatter(List<ResultBean> values){
-        Map<String, ResultBean> stringResultBeanMap = new LinkedHashMap<>();
-        stringResultBeanMap.put("강원", new ResultBean());
-        stringResultBeanMap.put("경기", new ResultBean());
-        stringResultBeanMap.put("경남", new ResultBean());
-        stringResultBeanMap.put("경북", new ResultBean());
-        stringResultBeanMap.put("광주", new ResultBean());
-        stringResultBeanMap.put("대구", new ResultBean());
-        stringResultBeanMap.put("대전", new ResultBean());
-        stringResultBeanMap.put("부산", new ResultBean());
-        stringResultBeanMap.put("서울", new ResultBean());
-        stringResultBeanMap.put("세종", new ResultBean());
-        stringResultBeanMap.put("울산", new ResultBean());
-        stringResultBeanMap.put("인천", new ResultBean());
-        stringResultBeanMap.put("전남", new ResultBean());
-        stringResultBeanMap.put("전북", new ResultBean());
-        stringResultBeanMap.put("제주", new ResultBean());
-        stringResultBeanMap.put("충남", new ResultBean());
-        stringResultBeanMap.put("충북", new ResultBean());
+        Map<String, ResultBean> stringResultBeanMap = initLocalArea();
 
         for(String key : stringResultBeanMap.keySet()){
             for(ResultBean re: values ){
@@ -118,7 +101,27 @@ public class Result {
             }
         }
 
+        List<String> result2 = stringResultBeanMap.keySet()
+                .stream()
+                .filter(str -> values.stream()
+                        .anyMatch( r -> r.getCity().equals(str)))
+                .collect(Collectors.toList());
+
+        System.out.println("=======================");
+        result2.forEach(System.out::println);
+
         return stringResultBeanMap.values().stream().collect(Collectors.toList());
+    }
+
+
+    public Map<String, ResultBean> initLocalArea(){
+        String [] areas = {"강원","경기","경남","경북","광주","대구","대전","부산","서울","세종","울산","인천","전남","전북","제주","충남","충북"};
+
+        Map<String, ResultBean> stringResultBeanMap = new LinkedHashMap<>();
+        for(String area: areas){
+            stringResultBeanMap.put(area, new ResultBean());
+        }
+        return stringResultBeanMap;
     }
 }
 
