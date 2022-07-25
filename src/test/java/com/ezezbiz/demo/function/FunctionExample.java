@@ -2,6 +2,7 @@ package com.ezezbiz.demo.function;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Optional;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
@@ -37,6 +38,16 @@ public class FunctionExample {
         assertThat(result, is(220));
     }
 
+    @Test
+    public void testOptional(){
+        Optional<TestBean> bean = Optional.of(new TestBean("good", null));
+        Optional<String> s = bean.map(TestBean::getValue);
+        System.out.println(s);
+
+    }
+
+
+
     static Function<Integer, Integer> add = x-> x + 1;
 
     static Function<Integer, Integer>  multiply = x-> x * 10;
@@ -53,4 +64,21 @@ public class FunctionExample {
     }
 
 
+    public class TestBean{
+        private String name;
+        private String value;
+
+        public TestBean(String name, String value) {
+            this.name = name;
+            this.value = value;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public String getValue() {
+            return value;
+        }
+    }
 }
