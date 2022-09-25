@@ -1,15 +1,21 @@
 package com.ezezbiz.demo.functions;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.ToString;
+
+
+@AllArgsConstructor
+@Builder
+@ToString
+@Getter
 public class Person {
     private final String name;
     private final int age;
     private final Gender gender;
 
-    public Person(String name, int age, Gender gender) {
-        this.name = name;
-        this.age = age;
-        this.gender = gender;
-    }
+    private final String companyCode;
 
     public String getName() {
         return name;
@@ -21,14 +27,5 @@ public class Person {
 
     public Gender getGender() {
         return gender;
-    }
-
-    @Override
-    public String toString() {
-        return "Person{" +
-                "name='" + name + '\'' +
-                ", age=" + age +
-                ", gender=" + gender +
-                '}';
     }
 }

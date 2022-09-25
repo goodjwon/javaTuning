@@ -2,8 +2,10 @@ package com.ezezbiz.demo.functions;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.ToString;
 
 @Data
+@ToString
 public class Job {
 
     private final String jobName;
