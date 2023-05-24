@@ -24,6 +24,7 @@ public class MessageDecryptor {
 
         System.out.println("Decrypted Message: " + decryptedMessage);
         System.out.println("Decrypted Message: " + decryptedMessage);
+        System.out.println("Decrypted Message: " + decryptedMessage);
     }
 
     private static PrivateKey loadPrivateKey(String filepath) throws IOException, NoSuchAlgorithmException, InvalidKeySpecException {
