@@ -74,13 +74,13 @@ public class Main {
 
     private static List<Person> getPeople() {
         return List.of(
-                new Person("Antonio", 20, Gender.MALE),
-                new Person("Alina Smith", 33, Gender.FEMALE),
-                new Person("Helen White", 57, Gender.FEMALE),
-                new Person("Alex Boz", 14, Gender.MALE),
-                new Person("Jamie Goa", 99, Gender.MALE),
-                new Person("Anna Cook", 7, Gender.FEMALE),
-                new Person("Zelda Brown", 120, Gender.FEMALE)
+                new Person("Antonio", 20,  Gender.MALE, "1"),
+                new Person("Alina Smith", 33, Gender.FEMALE, "1"),
+                new Person("Helen White", 57, Gender.FEMALE, "1"),
+                new Person("Alex Boz", 14, Gender.MALE, "1"),
+                new Person("Jamie Goa", 99, Gender.MALE, "1"),
+                new Person("Anna Cook", 7, Gender.FEMALE, "1"),
+                new Person("Zelda Brown", 120, Gender.FEMALE, "1")
         );
     }
 }

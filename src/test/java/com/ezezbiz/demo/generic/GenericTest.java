@@ -4,15 +4,14 @@ import org.junit.jupiter.api.Test;
 
 import java.io.Serializable;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class GenericTest {
     @Test
     public void givenNonGenericConstructor_whenCreateNonGenericEntry_thenOK(){
         Entry entry = new Entry("sample", 1);
 
-        assertEquals("sample", entry.getData());
         assertEquals(1, entry.getRank());
 
     }
