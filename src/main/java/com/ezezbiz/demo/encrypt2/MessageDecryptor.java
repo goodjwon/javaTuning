@@ -23,6 +23,7 @@ public class MessageDecryptor {
         String decryptedMessage = decrypt(privateKey, encryptedMessage);
 
         System.out.println("Decrypted Message: " + decryptedMessage);
+        System.out.println("Decrypted Message: " + decryptedMessage);
     }
 
     private static PrivateKey loadPrivateKey(String filepath) throws IOException, NoSuchAlgorithmException, InvalidKeySpecException {
