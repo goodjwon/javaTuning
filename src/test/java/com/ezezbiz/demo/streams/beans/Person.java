@@ -13,4 +13,5 @@ public class Person {
     private final String email;
     private final String gender;
     private final Integer age;
+    private FamilyRelationship familyRelationship;
 }
