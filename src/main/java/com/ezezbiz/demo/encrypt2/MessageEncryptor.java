@@ -2,8 +2,7 @@ package com.ezezbiz.demo.encrypt2;
 
 import javax.crypto.Cipher;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.io.InputStream;
 import java.security.KeyFactory;
 import java.security.NoSuchAlgorithmException;
 import java.security.PublicKey;
@@ -12,30 +11,32 @@ import java.security.spec.X509EncodedKeySpec;
 import java.util.Base64;
 
 public class MessageEncryptor {
-    public static void main(String[] args) throws Exception {
-        // Load the public key
-        PublicKey publicKey = loadPublicKey("publicKey.pem");
 
-        // Encrypt the message
-        String originalMessage = "Hello, World!";
-        String encodedSecretMessage = encrypt(publicKey, originalMessage);
+    // Load the public key from resources (src/main/resources)
+    public PublicKey loadPublicKey(String resourcePath) throws IOException, NoSuchAlgorithmException, InvalidKeySpecException {
+        ClassLoader classLoader = MessageEncryptor.class.getClassLoader();
+        try (InputStream keyInputStream = classLoader.getResourceAsStream(resourcePath)) {
+            if (keyInputStream == null) {
+                throw new IllegalArgumentException("Resource not found: " + resourcePath);
+            }
 
-        System.out.println("Original Message: " + originalMessage);
-        System.out.println("Encrypted Message: " + encodedSecretMessage);
+            String publicKeyContent = new String(keyInputStream.readAllBytes())
+                    .replace("\n", "")
+                    .replace("\r", "")
+                    .replace("-----BEGIN PUBLIC KEY-----", "")
+                    .replace("-----END PUBLIC KEY-----", "");
+
+            X509EncodedKeySpec keySpec = new X509EncodedKeySpec(Base64.getDecoder().decode(publicKeyContent));
+            KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+            return keyFactory.generatePublic(keySpec);
+        }
     }
 
-    private static PublicKey loadPublicKey(String filepath) throws IOException, NoSuchAlgorithmException, InvalidKeySpecException {
-        String publicKeyContent = new String(Files.readAllBytes(Paths.get(filepath)));
-        publicKeyContent = publicKeyContent.replace("\n", "").replace("-----BEGIN PUBLIC KEY-----", "").replace("-----END PUBLIC KEY-----", "");
-        X509EncodedKeySpec keySpec = new X509EncodedKeySpec(Base64.getDecoder().decode(publicKeyContent));
-        KeyFactory keyFactory = KeyFactory.getInstance("RSA");
-        return keyFactory.generatePublic(keySpec);
-    }
-
-    private static String encrypt(PublicKey publicKey, String message) throws Exception {
+    // Encrypt the message using the public key
+    public String encrypt(PublicKey publicKey, String message) throws Exception {
         Cipher encryptCipher = Cipher.getInstance("RSA");
         encryptCipher.init(Cipher.ENCRYPT_MODE, publicKey);
-        byte[] secretMessageBytes = encryptCipher.doFinal(message.getBytes());
-        return Base64.getEncoder().encodeToString(secretMessageBytes);
+        byte[] encryptedMessageBytes = encryptCipher.doFinal(message.getBytes());
+        return Base64.getEncoder().encodeToString(encryptedMessageBytes);
     }
 }
