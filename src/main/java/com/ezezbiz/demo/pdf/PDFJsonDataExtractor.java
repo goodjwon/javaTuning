@@ -10,6 +10,11 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * 작성자 : 박정원
+ * 작성일 : 2024.12
+ * 실패파일
+ */
 public class PDFJsonDataExtractor {
     public static void main(String[] args) {
         String pdfPath = "D:\\S2B20241129-B00042.pdf";

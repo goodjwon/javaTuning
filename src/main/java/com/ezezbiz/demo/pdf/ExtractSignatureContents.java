@@ -10,6 +10,12 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * 작성자 : 박정원
+ * 작성일 : 2024.12
+ * 실패파일
+ */
+
 public class ExtractSignatureContents {
     public static void main(String[] args) {
         String pdfPath = "D:\\S2B20241129-B00042.pdf";

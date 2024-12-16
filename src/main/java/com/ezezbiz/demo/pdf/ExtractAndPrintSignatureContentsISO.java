@@ -1,19 +1,13 @@
 package com.ezezbiz.demo.pdf;
 
-import org.apache.pdfbox.cos.COSArray;
-import org.apache.pdfbox.cos.COSBase;
-import org.apache.pdfbox.cos.COSDictionary;
-import org.apache.pdfbox.cos.COSName;
-import org.apache.pdfbox.cos.COSObject;
-import org.apache.pdfbox.cos.COSString;
+import org.apache.pdfbox.cos.*;
 import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.pdmodel.interactive.form.PDAcroForm;
-import org.apache.pdfbox.pdmodel.interactive.form.PDField;
-import org.apache.pdfbox.pdmodel.interactive.form.PDSignatureField;
 import org.apache.pdfbox.pdmodel.interactive.annotation.PDAnnotation;
 import org.apache.pdfbox.pdmodel.interactive.annotation.PDAnnotationWidget;
 import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.interactive.form.*;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
@@ -24,7 +18,7 @@ import java.util.List;
  * 실패파일
  */
 
-public class ExtractAndPrintSignatureContents {
+public class ExtractAndPrintSignatureContentsISO {
     public static void main(String[] args) {
         String pdfPath = "D:\\S2B20241129-B00042.pdf";
 
@@ -44,7 +38,7 @@ public class ExtractAndPrintSignatureContents {
                 return;
             }
 
-            // Fields[0] 접근
+            // Fields[0] 접근 (사용 환경에 따라 인덱스 조정 필요)
             PDField firstField = fields.get(0);
 
             // 서명 필드인지 확인
@@ -67,6 +61,7 @@ public class ExtractAndPrintSignatureContents {
                 }
 
                 List<PDAnnotation> annots = page.getAnnotations();
+                // Annots[1]에 접근 (사용 환경에 따라 인덱스 조정 필요)
                 if (annots.size() <= 1) {
                     System.out.println("Annots[1] 어노테이션이 없습니다.");
                     return;
@@ -86,19 +81,22 @@ public class ExtractAndPrintSignatureContents {
                         COSString contentsString = (COSString) contentsBase;
                         byte[] signatureBytes = contentsString.getBytes();
 
-                        // 1. 바이트 길이 출력
+                        // 원본 바이너리 데이터 길이
                         System.out.println("서명 바이너리 데이터 길이: " + signatureBytes.length);
 
-                        // 2. HEX 문자열 변환 후 출력
+                        // 1. 바이트 -> HEX 문자열 변환
                         String hexString = bytesToHex(signatureBytes);
                         System.out.println("서명 데이터 (HEX): " + hexString);
 
-                        // 3. UTF-8 시도 (대부분 의미없는 문자일 가능성)
+                        // 2. HEX -> 바이트 복원
+                        byte[] restoredBytes = hexToBytes(hexString);
+
+                        // 3. ISO-8859-1 인코딩으로 문자열 변환 시도
                         try {
-                            String utf8String = new String(signatureBytes, "UTF-8");
-                            System.out.println("서명 데이터 (UTF-8 해석): " + utf8String);
+                            String isoString = new String(restoredBytes, "ISO-8859-1");
+                            System.out.println("HEX 복원 후 ISO-8859-1 해석: " + isoString);
                         } catch (Exception e) {
-                            // UTF-8 변환 실패 시 무시
+                            e.printStackTrace();
                         }
 
                     } else {
@@ -132,5 +130,17 @@ public class ExtractAndPrintSignatureContents {
             sb.append(String.format("%02x", b));
         }
         return sb.toString();
+    }
+
+    // HEX 문자열을 바이트 배열로 변환하는 메서드
+    private static byte[] hexToBytes(String hex) {
+        int length = hex.length();
+        byte[] data = new byte[length / 2];
+        for (int i = 0; i < length; i += 2) {
+            int high = Character.digit(hex.charAt(i), 16);
+            int low = Character.digit(hex.charAt(i+1), 16);
+            data[i / 2] = (byte) ((high << 4) + low);
+        }
+        return data;
     }
 }

@@ -6,7 +6,11 @@ import java.util.Calendar;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.interactive.digitalsignature.PDSignature;
-
+/**
+ * 작성자 : 박정원
+ * 작성일 : 2024.12
+ * 실패파일
+ */
 public class PdfSignature {
     public static void main(String args[]) {
 

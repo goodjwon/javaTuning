@@ -4,7 +4,11 @@ import java.io.File;
 import java.io.IOException;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
-
+/**
+ * 작성자 : 박정원
+ * 작성일 : 2024.12
+ * 실패파일
+ */
 public class PDFTextExtractor {
     public static void main(String[] args) {
         // 추출할 PDF 파일 경로
